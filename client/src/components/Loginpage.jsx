@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_Backend_URI}/login`, {
+      const response = await axiosInstance.post("/login", {
         email: formData.email,
         password: formData.password
       });

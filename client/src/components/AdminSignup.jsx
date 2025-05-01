@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 
 export default function AdminSignupPage() {
      const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ export default function AdminSignupPage() {
      const handleSubmit = async (e) => {
           e.preventDefault();
           try {
-               const response = await axios.post(`${process.env.REACT_APP_Backend_URI}/admin/register`, {
+               const response = await axiosInstance.post("/admin/register", {
                     name: formData.name,
                     email: formData.email,
                     password: formData.password
