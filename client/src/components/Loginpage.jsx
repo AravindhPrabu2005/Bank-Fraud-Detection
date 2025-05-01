@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import axiosInstance from '../axiosInstance';
 
 export default function LoginPage() {
@@ -23,6 +22,7 @@ export default function LoginPage() {
       if (response.data.success) {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('isAdmin', response.data.user.isAdmin.toString());
+        localStorage.setItem('userId', response.data.user.userId);
 
         if (response.data.user.isAdmin) {
           window.location.href = '/admin';

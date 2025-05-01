@@ -37,15 +37,17 @@ app.post("/login", async (req, res) => {
     let user = await User.findOne({ email });
     if (user && await bcrypt.compare(password, user.password)) {
         const token = jwt.sign({ id: user._id, email: user.email, isAdmin: false }, process.env.JWT_SECRET, { expiresIn: "1h" });
-        return res.json({ 
-            success: true, 
-            token, 
+        // Inside user login success block
+        return res.json({
+            success: true,
+            token,
             user: {
                 isAdmin: false,
                 isLoggedIn: true,
                 userId: user._id
             }
         });
+
     }
 
     // Check in Admins collection
